@@ -1,5 +1,7 @@
 @import "./reset";
 @import "font-awesome";
 @import "./clearfix";
-@import "./_variable.scss";
+@import "config/colors";
 @import "./_main_view.scss";
+@import "modules/user/*";
+@import "modules/flash";
