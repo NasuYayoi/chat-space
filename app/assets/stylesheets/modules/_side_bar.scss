@@ -1,0 +1,52 @@
+.side-bar {
+  height: 100vh;
+  width: 300px;
+  float: left;
+
+  .header {
+    background-color: $side_blue_dark;
+    height: 15%;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    &__name {
+      font-size: 16px;
+      font-weight: bold;
+      color: $white;
+      margin: 0 20px;
+      position: relative;
+      display: inline-block;
+    }
+    &__lists {
+      color: $white;
+      position: relative;
+      display: inline-block;
+      margin-left: 90px;
+      .list {
+        display: inline-block;
+        .icon {
+          color: $white;
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+  .groups {
+    background-color: $side_blue_light;
+    height: 85%;
+    width: 100%;
+    color: $white;
+    .group {
+      padding: 20px;
+      &__name {
+        font-size: 15px;
+        padding-bottom: 5px;
+      }
+      &__message {
+        font-size: 11px;
+      }
+    }
+  }
+}
