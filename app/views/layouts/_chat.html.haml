@@ -1,30 +1,32 @@
-.chat-main
-  .chat-main__header
-    .chat-main__header--group.clearfix
-      .chat-main__header--group-name
+.chat
+  .header
+    .left-header
+      .left-header__title
         sampleグループ
-      = link_to '/groups/001/edit', class: 'chat-main__header--group-edit-btn' do
+      .left-header__members
+        .member
+          MEMBER:
+          %i user01
+
+    .right-header
+      = link_to '/groups/1/edit', class: 'right-header__button' do
         edit
-    .chat-main__header-members
-      MEMBER:
-      %i user01
 
-  .chat-main__body
-    .chat-main__body--messages-list
-      .chat-main__message.clearfix
-        .chat-main__message-name
+  .messages
+    .message
+      .upper-message
+        .upper-message__user-name
           test
-        .chat-main__message-time
-          2018/12/10 20:00:00
-        .chat-main__message-body
+        .upper-message__date
+          2018/12/20 20:10:00
+      .lower-message
+        .lower-message__content
           Hello!
-          .chat-main__message-body-image
 
-  .chat-main__footer
-    %form.chat-main__footer-form
-      .chat-main__footer-body
-        %input.message{ placeholder: 'type a message', type: 'text', name: 'message[body]',id: 'message_body' }
-        %label.chat-file{for: "message_image"}
-          %input.image{type: "file", name: "message[image]", id: 'message_image'}
-          = fa_icon "picture-o"
-      %input.submit{ type: 'submit', name: 'commit', value: "Send" }
+  .form
+    %input.form__message{ placeholder: 'type a message', type: 'text', name: 'message[body]',id: 'message_body' }
+    %label.form__mask{for: "message_image"}
+      .form__mask__image{type: "file", name: "message[image]", id: 'message_image'}
+        = fa_icon "picture-o"
+      %input.hidden
+    %input.form__submit{ type: 'submit', name: 'commit', value: "Send"}
