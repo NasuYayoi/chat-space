@@ -43,8 +43,8 @@
 |------|----|-------|
 |content|text|
 |image|string|
-|group|references|null: false, foreign_key: true|
-|user|references|null: false, foreign_key: true|
+|group|references|foreign_key: true|
+|user|references|foreign_key: true|
 
 ### Association
 - belongs_to :group
