@@ -1,55 +1,50 @@
 .side-bar {
-  height: 100vh;
+  box-sizing: border-box;
+  color: $white;
   width: 300px;
   float: left;
-
   .header {
     background-color: $side_blue_dark;
-    height: 15%;
-    width: 100%;
-    position: relative;
-    display: flex;
-    align-items: center;
-
+    height: 100px;
+    line-height: 100px;
+    padding: 0 20px;
     &__name {
-      font-size: 16px;
-      font-weight: bold;
-      color: $white;
-      margin: 0 20px;
-      position: relative;
       display: inline-block;
+      font-size: $side_header_font;
+      font-weight: bold;
     }
     &__lists {
-      color: $white;
-      position: relative;
       display: inline-block;
-      margin-left: 90px;
+      float: right;
       .list {
         display: inline-block;
-        .icon {
-          color: $white;
-          margin-left: 10px;
-        }
+      }
+      .icon {
+        color: $white;
+        font-size: $side_header_font;
       }
     }
   }
+
   .groups {
     background-color: $side_blue_light;
-    height: 85%;
-    width: 100%;
-    color: $white;
+    height: calc(100vh - 100px);
+    padding: 0 20px;
     .group {
-      padding: 20px;
+      box-sizing: border-box;
+      padding: 20px 0 40px;
       a {
         text-decoration: none;
         color: $white;
       }
       &__name {
-        font-size: 15px;
-        padding-bottom: 5px;
+        color: $white;
+        font-size: $side_group_name;
       }
       &__message {
-        font-size: 11px;
+        color: $white;
+        font-size: $side_group_message;
+        margin-top: 5px;
       }
     }
   }
