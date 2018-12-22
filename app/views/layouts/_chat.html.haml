@@ -13,20 +13,14 @@
         edit
 
   .messages
-    .message
-      .upper-message
-        .upper-message__user-name
-          test
-        .upper-message__date
-          2018/12/20 20:10:00
-      .lower-message
-        .lower-message__content
-          Hello!
+    = render @messages
 
   .form
-    %input.form__message{ placeholder: 'type a message', type: 'text', name: 'message[body]',id: 'message_body' }
-    %label.form__mask{for: "message_image"}
-      .form__mask__image{type: "file", name: "message[image]", id: 'message_image'}
-        = fa_icon "picture-o"
-      %input.hidden
-    %input.form__submit{ type: 'submit', name: 'commit', value: "Send"}
+    = form_for [@group, @message] do |f|
+      = f.text_field :content, class: 'form__message', placeholder: 'type a message'
+      .form__mask
+        = f.label :image, class: 'form__mask__image' do
+          = fa_icon 'picture-o', class: 'icon'
+          = f.file_field :image, class: 'hidden'
+      = f.submit 'Send', class: 'form__submit'
+
