@@ -40,7 +40,7 @@ $(document).on('turbolinks:load', function() {
     .fail(function(){
       alert('error');
     })
-    .always(function(message) {
+    .always(function() {
       $('.form__submit').prop('disabled',false);
     })
   })
