@@ -48,11 +48,11 @@ $(document).on('turbolinks:load', function() {
 
   var interval = setInterval(function() {
     if (window.location.href.match(/\/groups\/\d+\/messages/)){
-      var last_message_id = $('.message:last').data('message-id') || 0;
+      var lastMessageId = $('.message:last').data('message-id') || 0;
       $.ajax({
         url: location.href,
         type: 'GET',
-        data: { id: last_message_id },
+        data: { id: lastMessageId },
         dataType: 'json'
       })
       .done(function(data) {
