@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
 
   def index
-    @users = User.where('(name LIKE(?)) and (id != ?)', "%#{params[:keyword]}%", "#{current_user.id}").limit(10)
+    @group = Group.find(params[:groupId])
+    # @ids = @group.users.ids
+    # @users = User.where.not(id:@ids).where('(name LIKE(?)) and (id != ?)', "%#{params[:keyword]}%", "#{current_user.id}")
+    # 新規作成の時にエラーになるので、グループIDがある時とない時でif文で分岐させる。
+    @users = User.where('(name LIKE(?)) and (id != ?)', "%#{params[:keyword]}%", "#{current_user.id}")
     respond_to do |format|
       format.json
     end
