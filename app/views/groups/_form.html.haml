@@ -1,9 +1,9 @@
-= form_for @group do |f|
-  - if @group.errors.any?
+= form_for group do |f|
+  - if group.errors.any?
     .chat-group-form__errors
-      %h2="#{@group.errors.full_messages.count}件のエラーが発生しました。"
+      %h2="#{group.errors.full_messages.count}件のエラーが発生しました。"
       %ul
-        - @group.errors.full_messages.each do |message|
+        - group.errors.full_messages.each do |message|
           %li= message
 
   .chat-group-form__field.clearfix
@@ -11,13 +11,13 @@
       = f.label :name, class: 'chat-group-form__label'
     .chat-group-form__field--right
       = f.text_field :name, class: 'chat-group-form__input', placeholder: "グループ名を入力してください"
+      = f.hidden_field :id, class: 'chat-group-id', value: group.id
 
   .chat-group-form__field.clearfix
     .chat-group-form__field--left
       =f.label :"チャットメンバーを追加", class: 'chat-group-form__label'
     .chat-group-form__field--right
       .chat-group-form__search.clearfix
-      -# = f.text_field :name, class: 'chat-group-form__input', id: 'user-search-field', placeholder: "追加したいユーザー名を入力してください"
       %input#user-search-field.chat-group-form__input{placeholder: "追加したいユーザー名を入力してください"}
       #user-search-result
 
@@ -25,12 +25,14 @@
     .chat-group-form__field--left
       = f.label :"チャットメンバー", class: 'chat-group-form__label'
     .chat-group-form__field--right
-      #chat-group-users
-        .chat-group-user.clearfix
-          %input{ name: "group[user_ids][]", type: 'hidden', value: "#{current_user.id}" }
-          %p.chat-group-user__name
-            = current_user.name
-
+      - members.each do |member|
+        #chat-group-users
+          .chat-group-user.clearfix{ id: "chat-group-user-#{member.id}" }
+            %input{name: 'group[user_ids][]', type: 'hidden', value: "#{ member.id }"}
+            %p.chat-group-user__name
+              = member.name
+            =link_to 'edit_group_path', class: 'user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn', remote: true do
+              削除
   .chat-group-form__field.clearfix
     .chat-group-form__field--left
     .chat-group-form__field--right

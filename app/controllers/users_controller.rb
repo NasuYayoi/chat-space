@@ -1,7 +1,19 @@
 class UsersController < ApplicationController
 
   def index
-    @users = User.where('(name LIKE(?)) and (id != ?)', "%#{params[:keyword]}%", "#{current_user.id}").limit(10)
+    # GroupIdがない時（グループ新規作成時）
+    if (params[:groupId] == "")
+      @users = User.where('(name LIKE(?)) and (id != ?)', "%#{params[:keyword]}%", "#{current_user.id}")
+    # GroupIdがある時（グループ編集時）
+    else
+      # 編集するグループのidを変数に入れる
+      @group = Group.find(params[:groupId])
+      # グループに所属するユーザのidを変数に入れる
+      @ids = @group.users.ids
+      # メンバー追加のテキストフィールドに表示されるユーザをwhereで条件検索する。インクリメンタルサーチの時に表示される。
+      @users = User.where.not(id:@ids).where('(name LIKE(?)) and (id != ?)', "%#{params[:keyword]}%", "#{current_user.id}")
+    end
+
     respond_to do |format|
       format.json
     end

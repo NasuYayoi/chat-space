@@ -111,6 +111,9 @@
         color: $remove_red;
       }
     }
+    a {
+      text-decoration: none;
+    }
   }
 
   &__action-btn {

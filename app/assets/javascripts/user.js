@@ -20,7 +20,7 @@ function searchNoUser(user) {
 var member_list = $("#chat-group-users")
 
 function addUser(id, name) {
-  var html = `<div class='chat-group-user clearfix js-chat-member' id='chat-group-user-8'>
+  var html = `<div class='chat-group-user clearfix js-chat-member' id='chat-group-user-${ id }'>
                 <input name='group[user_ids][]' type='hidden' value=${ id }>
                 <p class='chat-group-user__name'>${ name }</p>
                 <a class='user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn'>削除</a>
@@ -30,11 +30,12 @@ function addUser(id, name) {
 
   $("#user-search-field").on("keyup", function() {
     var input = $("#user-search-field").val();
+    var group_id = $(".chat-group-id").val();
 
     $.ajax({
       type: 'GET',
       url: '/users',
-      data: { keyword: input },
+      data: { keyword: input, groupId: group_id },
       dataType: 'json'
     })
 
